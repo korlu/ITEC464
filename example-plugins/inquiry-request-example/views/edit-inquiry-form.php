@@ -30,6 +30,9 @@ if (isset($inquiry)) : ?>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="<?php echo esc_attr($inquiry->email); ?>">
 
+            <label for="state">State</label>
+            <input type="text" name="state" id="state" value="<?php echo esc_attr($inquiry->state); ?>" readonly disabled>
+
             <label for="phone_number">Phone Number</label>
             <input type="tel" name="phone_number" id="phone_number" value="<?php echo esc_attr($inquiry->phone_number); ?>">
 
