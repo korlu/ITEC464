@@ -1,0 +1,22 @@
+/* 
+This CSS provides the styles necessary to utilize 
+CSS Grid for the layout, ensuring the form is responsive 
+and well-structured on various devices. 
+*/
+
+.grid-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.grid-form label {
+    grid-column: 1 / 2;
+}
+
+.grid-form input[type="text"],
+.grid-form input[type="email"],
+.grid-form input[type="submit"] {
+    grid-column: 2 / 3;
+}
