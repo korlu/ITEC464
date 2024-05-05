@@ -29,7 +29,7 @@ function inquiry_request_admin_menu()
 function inquiry_request_admin_page()
 {
   global $wpdb;
-  $table_name = $wpdb->prefix . 'sample_inquiries';
+  $table_name = $wpdb->prefix . 'inquiry_request_table';
 
   // Check if an edit form is requested
   if (isset($_GET['edit']) && is_numeric($_GET['edit'])) { // Check if edit
