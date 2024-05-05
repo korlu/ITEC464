@@ -1,0 +1,67 @@
+.example-inquiry-form {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* General form styling */
+.form-container {
+  display: grid;
+  grid-template-columns: 10em auto;
+  gap: 12px;
+  max-width: 600px;
+  margin: 10px 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-container label {
+  font-weight: bold;
+  /* padding: 10px; */
+  justify-self: end;
+  align-self: center;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-container input[type="submit"] {
+  grid-column: 2;
+  padding: 10px 20px;
+  background-color: #007cba;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: #005a9c;
+}
+
+.success {
+  color: green;
+}
+
+/* Handling responsiveness */
+@media (max-width: 600px) {
+  .form-container {
+      grid-template-columns: 1fr;
+  }
+
+  .form-container label {
+      justify-self: start;
+  }
+
+  .form-container input[type="submit"] {
+      grid-column: 1;
+  }
+}
