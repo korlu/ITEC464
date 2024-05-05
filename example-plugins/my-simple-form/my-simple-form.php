@@ -41,11 +41,13 @@ function itec_simple_form()
     if (isset($_GET['submitted']) && $_GET['submitted'] == 'yes') {
         $content = '<div>Thank you for your submission!</div>';
     } else {
-        $action_url = esc_url($_SERVER['REQUEST_URI']); // Get the current URL
+        // $action_url = esc_url($_SERVER['REQUEST_URI']); // Get the current URL
+        $action_url = admin_url('admin-post.php');
 
         // Generate the form HTML
         $content = <<<FORM_CONTENT
         <form action="{$action_url}" method="post" class="grid-form">
+            <input type="hidden" name="action" value="handle_itec_simple_form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
@@ -100,8 +102,8 @@ function itec_simple_form_handler()
     }
 }
 
-// Add the form submission handler to the init hook
-add_action('init', 'itec_simple_form_handler');
+// Register the admin_post_handle_itec_simple_form action hook to handle form submissions
+add_action('admin_post_handle_itec_simple_form', 'itec_simple_form_handler');
 
 
 

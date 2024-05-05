@@ -18,10 +18,6 @@ Author URI: http://localhost
 
 **Form Handling**: The `itec_simple_form_handler` function checks if the form has been submitted by verifying the request method and the presence of a specific field in the POST data. This helps prevent unintended execution during other POST requests. It then sanitizes the input data to prevent security vulnerabilities and inserts the data into the database. Finally, it redirects the user to avoid duplicate submissions upon refreshing the page.
 
-**Init Hook**: The `init` hook is an action triggered after WordPress has finished loading but before any headers are sent. 
-
-Attaching your form handler function to this hook ensures that it can perform redirections or output modifications without running into "headers already sent" errors. 
-
 **Data Validation and Insertion**: After sanitizing the input data to prevent security
 vulnerabilities, the function inserts the data into the specified table. It then redirects the user to avoid duplicate submissions upon refreshing the page.
 
@@ -75,11 +71,13 @@ function itec_simple_form()
         $content = '<div>Thank you for your submission!</div>';
     } else {
         // Get the current URL and store it in a variable called $action_url
-        $action_url = esc_url($_SERVER['REQUEST_URI']);
+        // $action_url = esc_url($_SERVER['REQUEST_URI']);
+        $action_url = admin_url('admin-post.php');
 
         // Generate the form HTML using heredocs syntax
         $content = <<<FORM_CONTENT
         <form action="{$action_url}" method="post" class="grid-form">
+            <input type="hidden" name="action" value="handle_itec_simple_form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
@@ -146,8 +144,8 @@ function itec_simple_form_handler()
     }
 }
 
-// Add the form submission handler to the init hook
-add_action('init', 'itec_simple_form_handler');
+// Register the admin_post_handle_itec_simple_form action hook to handle form submissions
+add_action('admin_post_handle_itec_simple_form', 'itec_simple_form_handler');
 ```
 
 ### 5. Adding CSS to the plugin: Enqueue Styles Function (`itec_simple_form_styles`)
